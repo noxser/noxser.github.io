@@ -264,7 +264,10 @@ function changeStateShare(res) {
         wss();
     });
     currentImage.src = res.url;
-    console.log( res)
+    console.log(res)
+    console.log(url)
+    console.log(res.url)
+    console.log(res.id)
     urlForShare.value = `${url}?id=${res.id}`
 
 }
