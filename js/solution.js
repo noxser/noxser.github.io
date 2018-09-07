@@ -269,7 +269,9 @@ function changeStateShare(res) {
     console.log(url)
     console.log(res.url)
     console.log(res.id)
-    urlForShare.value = `${url}?id=${res.id}`
+    console.log(url.href)
+    console.log(`${url.href}?id=${res.id}`)
+    urlForShare.value = `${url.href}?id=${res.id}`
 
 }
 
