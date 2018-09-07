@@ -40,7 +40,7 @@ let connection;
 //  *** Смотри URL приложения ищем id ***
 
 const url = new URL(`${window.location.href}`);
-console.log(url)
+console.log(url.href)
 const picId = url.searchParams.get('id');
 
 // айди картинки
