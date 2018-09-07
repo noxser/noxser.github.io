@@ -39,7 +39,7 @@ let connection;
 
 //  *** Смотри URL приложения ищем id ***
 
-const url = new URL(`${window.location.href}`);;
+const url = new URL(`${window.location.href}`);
 const picId = url.searchParams.get('id');
 
 // айди картинки
@@ -264,6 +264,7 @@ function changeStateShare(res) {
         wss();
     });
     currentImage.src = res.url;
+    console.log( res.url)
     urlForShare.value = `${url}?id=${res.id}`
 
 }
