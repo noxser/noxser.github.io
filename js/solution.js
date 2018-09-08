@@ -252,7 +252,7 @@ function changeStateShare(res) {
         menu.dataset.state = 'selected';
         // menuModeElements.forEach(elem => elem.dataset.state = '');
         share.dataset.state = 'selected';
-        console.log('222')
+        console.log('333')
     }
     burger.style.display = '';
     // после загрузки картинки основное дейтвие )))
@@ -518,7 +518,7 @@ burger.addEventListener('click', () => {
 })
 
 menuModeElements.forEach(elem => {
-    elem.dataset.state = ''
+    // elem.dataset.state = ''
     // пропускаем пункт загрузить новое
     // так как нет изменения интерфейса открываеться окно загруки
     if (!elem.classList.contains('new')) {
