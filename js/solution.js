@@ -121,7 +121,7 @@ function onFirstStart() {
         return;
     };
     // почти середина )))
-    wrapApp.dataset.state = '';
+    wrap.dataset.state = '';
     menu.style.left = `${wrap.offsetWidth/2 - menu.offsetWidth/10}px`;
     menu.style.top = `${wrap.offsetHeight/2 - menu.offsetHeight/4}px`;
     currentImage.src = ''; // убираем фон
