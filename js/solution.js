@@ -250,7 +250,7 @@ function changeStateShare(res) {
         comments.dataset.state = 'selected';
     } else {
         menu.dataset.state = 'selected';
-        menuModeElements.forEach(elem => elem.dataset.state = '');
+        // menuModeElements.forEach(elem => elem.dataset.state = '');
         share.dataset.state = 'selected';
     }
     burger.style.display = '';
