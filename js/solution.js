@@ -40,8 +40,9 @@ let connection;
 //  *** Смотри URL приложения ищем id ***
 
 const url = new URL(`${window.location.href}`);
-// console.log(url.href)
+// console.log(url.href);
 const picId = url.searchParams.get('id');
+// console.log(picId);
 
 // айди картинки
 let pictureID;
@@ -120,6 +121,7 @@ function onFirstStart() {
         return;
     };
     // почти середина )))
+    wrapApp.dataset.state = '';
     menu.style.left = `${wrap.offsetWidth/2 - menu.offsetWidth/10}px`;
     menu.style.top = `${wrap.offsetHeight/2 - menu.offsetHeight/4}px`;
     currentImage.src = ''; // убираем фон
@@ -265,13 +267,8 @@ function changeStateShare(res) {
         wss();
     });
     currentImage.src = res.url;
-    console.log(res)
-    console.log(url)
-    console.log(res.url)
-    console.log(res.id)
-    console.log(url.href)
     console.log(`${url}?id=${res.id}`)
-    urlForShare.value = `${url.href}?id=${res.id}`
+    urlForShare.value = `${url}?id=${res.id}`
 
 }
 
