@@ -252,6 +252,7 @@ function changeStateShare(res) {
         menu.dataset.state = 'selected';
         // menuModeElements.forEach(elem => elem.dataset.state = '');
         share.dataset.state = 'selected';
+        console.log('111')
     }
     burger.style.display = '';
     // после загрузки картинки основное дейтвие )))
