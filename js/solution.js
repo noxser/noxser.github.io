@@ -246,13 +246,13 @@ function changeStateShare(res) {
     // переключаем режим меню в зависимости от ситуации
     if (picId) {
         menu.dataset.state = 'selected';
-        menuModeElements.forEach(elem => elem.dataset.state = '');
+        // menuModeElements.forEach(elem => elem.dataset.state = '');
         comments.dataset.state = 'selected';
     } else {
         menu.dataset.state = 'selected';
         // menuModeElements.forEach(elem => elem.dataset.state = '');
         share.dataset.state = 'selected';
-        console.log('111')
+        console.log('222')
     }
     burger.style.display = '';
     // после загрузки картинки основное дейтвие )))
