@@ -40,9 +40,7 @@ let connection;
 //  *** Смотри URL приложения ищем id ***
 
 const url = new URL(`${window.location.href}`);
-// console.log(url.href);
 const picId = url.searchParams.get('id');
-// console.log(picId);
 
 // айди картинки
 let pictureID;
@@ -120,8 +118,7 @@ function onFirstStart() {
         pictureID = picId;
         return;
     };
-    // почти середина )))
-    wrap.dataset.state = '';
+    // почти середина ))) // wrap.dataset.state = '';
     menu.style.left = `${wrap.offsetWidth/2 - menu.offsetWidth/10}px`;
     menu.style.top = `${wrap.offsetHeight/2 - menu.offsetHeight/4}px`;
     currentImage.src = ''; // убираем фон
@@ -252,7 +249,6 @@ function changeStateShare(res) {
         menu.dataset.state = 'selected';
         // menuModeElements.forEach(elem => elem.dataset.state = '');
         share.dataset.state = 'selected';
-        console.log('333')
     }
     burger.style.display = '';
     // после загрузки картинки основное дейтвие )))
@@ -268,7 +264,6 @@ function changeStateShare(res) {
         wss();
     });
     currentImage.src = res.url;
-    console.log(`${url}?id=${res.id}`)
     urlForShare.value = `${url}?id=${res.id}`
 
 }
