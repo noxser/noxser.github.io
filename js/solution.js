@@ -49,6 +49,8 @@ let pictureID;
 
 // состояние по умолчанию при запуске приложения
 function onFirstStart() {
+    // очищаем локальное хранилище
+    localStorage.clear()
     if (picId) {
         takeImageInfo(picId);
         pictureID = picId;
@@ -384,6 +386,7 @@ canvas.addEventListener("mousemove", (event) => {
         curves[curves.length - 1].push(makePoint(event.offsetX, event.offsetY));
         debounceSendMask();
         needsRepaint = true;
+        reloadePage()
     }
 });
 
@@ -503,3 +506,11 @@ window.addEventListener('beforeunload', () => {
 });
 
 
+function reloadePage() {
+    if (!localStorage.getItem('restart-ok')) {
+        localStorage.setItem('restart-ok', 'True')
+        console.log('Set')
+        // location.reload()
+
+    }
+}
