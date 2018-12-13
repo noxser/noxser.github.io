@@ -50,7 +50,6 @@ let pictureID;
 // состояние по умолчанию при запуске приложения
 function onFirstStart() {
     // очищаем локальное хранилище
-    localStorage.clear()
     if (picId) {
         takeImageInfo(picId);
         pictureID = picId;
@@ -157,6 +156,7 @@ function sendImage(file) {
 
 // обрабатываем ответ сервера
 function takeImageInfo(id) {
+    localStorage.clear()
     fetch(`https://neto-api.herokuapp.com/pic/${id}`)
     .then( res => {
         if (res.status >= 200 && res.status < 300) {
@@ -441,7 +441,7 @@ function repaint () {
 function tick () {
     //  при каждой перерисовке следим за высотой menu
     checkMenuHeight();
-    // reloadePage();
+    reloadePage();
     if(needsRepaint) {
         repaint();
         needsRepaint = false;
@@ -507,8 +507,9 @@ window.addEventListener('beforeunload', () => {
 
 
 function reloadePage() {
-    if (localStorage.getItem('restart-ok')) {
-        localStorage.setItem('restart-ok', 'True');
+    if (localStorage.getItem('restart-ok') === 'yes') {
+        localStorage.setItem('restart-ok', 'yes');
         console.log('Set');
+        location.reload();
         location.reload();}
 }
