@@ -451,7 +451,7 @@ function tick () {
 
 
 const throttleSendMask = throttle(sendMaskState, 2000);
-const debounceSendMask = debounce(sendMaskState, 2000);
+const debounceSendMask = debounce(sendMaskState, 1000);
 
 // используем, чтобы посылать данные на сервер не чаще 1 раза в несколько секунд
 function throttle(callback, delay) {
