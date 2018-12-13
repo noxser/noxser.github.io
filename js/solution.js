@@ -441,7 +441,6 @@ function repaint () {
 function tick () {
     //  при каждой перерисовке следим за высотой menu
     checkMenuHeight();
-    reloadePage();
     if(needsRepaint) {
         repaint();
         needsRepaint = false;
