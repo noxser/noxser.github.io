@@ -50,7 +50,7 @@ function throttle(callback) {
                 isWaiting = false;
         });
         }
-    };
+    }
 }
 
 //  при изменении размера окна браузера и изменении высоты меню
