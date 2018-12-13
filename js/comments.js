@@ -73,33 +73,32 @@ function updateComments(newComments) {
     Object.keys(newComments).forEach(id => {
         // если сообщение с таким id уже есть в showComments (отрисованные комментарии), ничего не делаем
         if (id in showComments) return;
-    showComments[id] = newComments[id];
-    let needCreateNewForm = true;
-    document.querySelectorAll('.comments__form').forEach(form => {
-        // если уже существует форма с заданными координатами left и top, добавляем сообщение в эту форму
-        if (+form.dataset.left === showComments[id].left && +form.dataset.top === showComments[id].top) {
-        form.querySelector('.loader').parentElement.style.display = 'none';
-        // добавляем в эту форму сообщение
-        addComentToForm(newComments[id], form);
-        needCreateNewForm = false;
-    }
-});
-
-    // если формы с заданными координатами пока нет на холсте,
-    // создаем эту форму и добавляем в нее сообщение
-    if (needCreateNewForm) {
-        const newForm = createNewForm();
-        newForm.dataset.left = newComments[id].left;
-        newForm.dataset.top = newComments[id].top;
-        newForm.style.left = newComments[id].left + 'px';
-        newForm.style.top = newComments[id].top + 'px';
-        addComentToForm(newComments[id], newForm);
-        wrapCanvasComments.appendChild(newForm);
-        if (!commentsOnInput.checked) {
-            newForm.style.display = 'none';
+        showComments[id] = newComments[id];
+        let needCreateNewForm = true;
+        document.querySelectorAll('.comments__form').forEach(form => {
+            // если уже существует форма с заданными координатами left и top, добавляем сообщение в эту форму
+            if (+form.dataset.left === showComments[id].left && +form.dataset.top === showComments[id].top) {
+            form.querySelector('.loader').parentElement.style.display = 'none';
+            // добавляем в эту форму сообщение
+            addComentToForm(newComments[id], form);
+            needCreateNewForm = false;
+            }
+        });
+        // если формы с заданными координатами пока нет на холсте,
+        // создаем эту форму и добавляем в нее сообщение
+        if (needCreateNewForm) {
+            const newForm = createNewForm();
+            newForm.dataset.left = newComments[id].left;
+            newForm.dataset.top = newComments[id].top;
+            newForm.style.left = newComments[id].left + 'px';
+            newForm.style.top = newComments[id].top + 'px';
+            addComentToForm(newComments[id], newForm);
+            wrapCanvasComments.appendChild(newForm);
+            if (!commentsOnInput.checked) {
+                newForm.style.display = 'none';
+            }
         }
-    }
-});
+    });
 }
 
 // добавляем новое сообщение в форму, так чтобы все сообщения внутри формы шли по порядку
