@@ -310,14 +310,14 @@ function createWrapCanvasComments() {
         const currentForm = event.target.closest('.comments__form');
         Array.from(wrapCanvasComments.querySelectorAll('.comments__form')).forEach(form => {
             form.style.zIndex = 2;
-    });
+        });
         currentForm.style.zIndex = 3;
         // удаляем все пустые комментарии, помимо того, на который кликнули
         deleteAllBlankCommentFormsExcept(currentForm);
         // сворачиваем все комментарии кроме текущего
         minimizeAllComment(currentForm);
-    }
-});
+        }
+    });
 }
 
 // Рисование 
