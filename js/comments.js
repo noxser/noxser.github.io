@@ -48,20 +48,20 @@ function createNewForm() {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-            })
-            .then(res => {
-                if (res.status >= 400) throw res.statusText;
-                return res;
-            })
-            .then(res => res.json())
-            .then(res => {
-                updateComments(res.comments);
-                newForm.querySelector('.comments__input').value = '';
-            })
-            .catch(err => {
-                console.log(err);
-                newForm.querySelector('.loader').parentElement.style.display = 'none';
-            });
+        })
+        .then(res => {
+            if (res.status >= 400) throw res.statusText;
+            return res;
+        })
+        .then(res => res.json())
+        .then(res => {
+            updateComments(res.comments);
+            newForm.querySelector('.comments__input').value = '';
+        })
+        .catch(err => {
+            console.log(err);
+            newForm.querySelector('.loader').parentElement.style.display = 'none';
+        });
     });
 
     return newForm;
