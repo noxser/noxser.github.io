@@ -443,7 +443,7 @@ function tick () {
         repaint();
         needsRepaint = false;
         // отправляем рисунки на сервер
-        throttleSendMask()
+        // throttleSendMask()
         debounceSendMask()
     }
     window.requestAnimationFrame(tick);
