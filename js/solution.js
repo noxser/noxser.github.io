@@ -507,7 +507,7 @@ window.addEventListener('beforeunload', () => {
 
 
 function reloadePage() {
-    if (localStorage.getItem('restart-ok') === 'yes') {
+    if (localStorage.getItem('restart-ok') == 'yes') {
         localStorage.setItem('restart-ok', 'yes');
         console.log('Set');
         location.reload();
