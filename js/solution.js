@@ -334,9 +334,9 @@ let brushColor = 'green'; // цвет при старте рисования
 // изменение текущего цвета линий
 document.querySelectorAll('.menu__color').forEach(colorInput => {
     colorInput.addEventListener('change', () => {
-    if (!colorInput.checked) return;
-brushColor = colorInput.value;
-});
+        if (!colorInput.checked) return;
+        brushColor = colorInput.value;
+    });
 });
 
 //Создаем холст для рисования
