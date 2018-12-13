@@ -364,12 +364,12 @@ function createCanvas() {
 // начинаем рисовать только в режиме рисования
 canvas.addEventListener("mousedown", (event) => {
     if (draw.dataset.state !== 'selected') return;
-drawing = true;
-const curve = []; // создаем новую кривую
-curve.color = brushColor; // определяем цвет кривой
-curve.push(makePoint(event.offsetX, event.offsetY));
-curves.push(curve);
-needsRepaint = true;
+    drawing = true;
+    const curve = []; // создаем новую кривую
+    curve.color = brushColor; // определяем цвет кривой
+    curve.push(makePoint(event.offsetX, event.offsetY));
+    curves.push(curve);
+    needsRepaint = true;
 });
 
 canvas.addEventListener("mouseup", (event) => {
@@ -412,7 +412,6 @@ function smoothCurve(points) {
     for(let i = 1; i < points.length - 1; i++) {
         smoothCurveBetween(points[i], points[i + 1]);
     }
-
     ctx.stroke();
 }
 // координаты положения курсора
@@ -428,11 +427,10 @@ function repaint () {
     curves.forEach((curve) => {
         // задаем цвет
         ctx.strokeStyle = curve.color;
-    ctx.fillStyle = curve.color;
-
-    circle(curve[0]);
-    smoothCurve(curve);
-});
+        ctx.fillStyle = curve.color;
+        circle(curve[0]);
+        smoothCurve(curve);
+    });
 }
 
 // Производим анимацию
