@@ -39,7 +39,6 @@ function createNewForm() {
         event.preventDefault();
         const message = newForm.querySelector('.comments__input').value;
         const body = `message=${encodeURIComponent(message)}&left=${encodeURIComponent(newForm.dataset.left)}&top=${encodeURIComponent(newForm.dataset.top)}`;
-
         newForm.querySelector('.loader').parentElement.style.display = '';
 
         fetch(`https://neto-api.herokuapp.com/pic/${pictureID}/comments`, {
@@ -49,21 +48,22 @@ function createNewForm() {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-        })
-        .then(res => {
-            if (res.status >= 400) throw res.statusText;
-            return res;
-        })
-        .then(res => res.json())
-        .then(res => {
-            updateComments(res.comments);
-            newForm.querySelector('.comments__input').value = '';
-        })
-        .catch(err => {
-            console.log(err);
-            newForm.querySelector('.loader').parentElement.style.display = 'none';
-        });
+            })
+            .then(res => {
+                if (res.status >= 400) throw res.statusText;
+                return res;
+            })
+            .then(res => res.json())
+            .then(res => {
+                updateComments(res.comments);
+                newForm.querySelector('.comments__input').value = '';
+            })
+            .catch(err => {
+                console.log(err);
+                newForm.querySelector('.loader').parentElement.style.display = 'none';
+            });
     });
+
     return newForm;
 }
 
