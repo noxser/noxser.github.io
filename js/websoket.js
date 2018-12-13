@@ -4,25 +4,25 @@ function wss() {
     connection.addEventListener('message', event => {
         // console.log(`пришло сообщение через вэбсокет:\n${event.data}`);
         const wsData = JSON.parse(event.data);
-    if (wsData.event === 'pic'){
-        if (wsData.pic.mask) {
-            canvas.style.background = `url(${wsData.pic.mask})`;
-        } else {
-            canvas.style.background = ``;
-        }
-    }
+		if (wsData.event === 'pic'){
+			if (wsData.pic.mask) {
+				canvas.style.background = `url(${wsData.pic.mask})`;
+			} else {
+				canvas.style.background = ``;
+			}
+		}
 
-    if (wsData.event === 'comment'){
-        insertCommentFromWss(wsData.comment);
-    }
+		if (wsData.event === 'comment'){
+			insertCommentFromWss(wsData.comment);
+		}
 
-    if (wsData.event === 'mask'){
-        canvas.style.background = `url(${wsData.url})`;
-    }
-});
-    connection.addEventListener('error', error => {
-        console.log(`Ошибка вэбсокета: ${error.data}`);
-});
+		if (wsData.event === 'mask'){
+			canvas.style.background = `url(${wsData.url})`;
+		}
+	});
+		connection.addEventListener('error', error => {
+			console.log(`Ошибка вэбсокета: ${error.data}`);
+		});
 }
 
 function insertCommentFromWss(wsComment) {
