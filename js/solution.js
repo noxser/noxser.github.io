@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 //основная зона в которой работаем
 const wrap = document.querySelector('.wrap');
@@ -53,7 +53,7 @@ function onFirstStart() {
         takeImageInfo(picId);
         pictureID = picId;
         return;
-    };
+    }
     // // почти середина ))) // wrap.dataset.state = '';
     // menu.style.left = `${wrap.offsetWidth/2 - menu.offsetWidth/10}px`;
     // menu.style.top = `${wrap.offsetHeight/2 - menu.offsetHeight/4}px`;
@@ -65,7 +65,7 @@ function onFirstStart() {
     burger.style.display = 'none'; // убираем бургер
     document.querySelectorAll('.comments__form').forEach(form => {
         form.style.display = 'none'; // выключаем коментарии
-})
+});
 
     //Навешиваем события для открытия изображения
     menu.querySelector('.new').addEventListener('click', uploadFileFromInput);
@@ -484,7 +484,7 @@ function sendMaskState() {
         if (!connection) return;
     connection.send(blob);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-});
+    });
 }
 
 // удаление форм комментариев, при загрузке приложения и нового изображения
