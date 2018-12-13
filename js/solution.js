@@ -383,6 +383,7 @@ canvas.addEventListener("mousemove", (event) => {
     if (drawing) {
         // curves[curves.length - 1].push(makePoint(event.offsetX, event.offsetY));
         needsRepaint = true;
+        debounceSendMask();
     }
 });
 
@@ -440,14 +441,14 @@ function tick () {
         repaint();
         needsRepaint = false;
         // отправляем рисунки на сервер
-        throttleSendMask();
-        debounceSendMask();
+        // throttleSendMask();
+        // debounceSendMask();
     }
     window.requestAnimationFrame(tick);
 }
 
 
-const throttleSendMask = throttle(sendMaskState, 2000);
+// const throttleSendMask = throttle(sendMaskState, 2000);
 const debounceSendMask = debounce(sendMaskState, 1000);
 
 // используем, чтобы посылать данные на сервер не чаще 1 раза в несколько секунд
