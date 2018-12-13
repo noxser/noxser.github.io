@@ -110,13 +110,13 @@ function onFilesDrop(event) {
 
     //проверяем тип файла
     if ((files[0].type === 'image/jpeg') || (files[0].type === 'image/png')) {
-        menu.style.display = ''
+        menu.style.display = '';
         // console.log(files[0])
         errorNode.style.display = 'none';
         // currentImageState = true;
         sendImage(files[0])
     } else {
-        menu.style.display = 'none'
+        menu.style.display = 'none';
         errorNode.style.display = '';
     }
 }
@@ -196,7 +196,7 @@ function changeStateShare(res) {
     currentImage.addEventListener('load', () => {
         imageLoader.style.display = 'none';
     menu.style.display = '';
-    createWrapCanvasComments()
+    createWrapCanvasComments();
     createCanvas();
     removeComents();
     // отрисовываем полученные комментарии
@@ -271,14 +271,14 @@ wrapCanvasComments.appendChild(newComment);
 document.querySelector('.menu_copy').addEventListener('click', (event) => {
     urlForShare.select();
 document.execCommand('copy');
-})
+});
 
 //  Переключение режимов меню
 
 burger.addEventListener('click', () => {
     menu.dataset.state = 'default';
 menuModeElements.forEach(elem => elem.dataset.state = '');
-})
+});
 
 menuModeElements.forEach(elem => {
     // elem.dataset.state = ''
@@ -290,7 +290,7 @@ menuModeElements.forEach(elem => {
     event.currentTarget.dataset.state = 'selected'
 })
 }
-})
+});
 
 // wrap для холста и коментариев
 function createWrapCanvasComments() {
@@ -449,7 +449,7 @@ function tick () {
 }
 
 
-// const throttleSendMask = throttle(sendMaskState, 2000);
+const throttleSendMask = throttle(sendMaskState, 2000);
 const debounceSendMask = debounce(sendMaskState, 2000);
 
 // используем, чтобы посылать данные на сервер не чаще 1 раза в несколько секунд
@@ -466,7 +466,7 @@ function throttle(callback, delay) {
     };
 }
 
-// происходи позавершении текушего действия
+// происходит позавершении текушего действия
 function debounce(callback, delay) {
     let timeout;
     return () => {
@@ -482,8 +482,8 @@ function debounce(callback, delay) {
 function sendMaskState() {
     canvas.toBlob(blob => {
         if (!connection) return;
-    connection.send(blob);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+        connection.send(blob);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 }
 
