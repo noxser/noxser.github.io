@@ -157,20 +157,20 @@ function sendImage(file) {
 function takeImageInfo(id) {
     fetch(`https://neto-api.herokuapp.com/pic/${id}`)
         .then( res => {
-        if (res.status >= 200 && res.status < 300) {
-        return res;
-        }
-        throw new Error (res.statusText);
+            if (res.status >= 200 && res.status < 300) {
+            return res;
+            }
+            throw new Error (res.statusText);
         })
         .then(res => res.json())
         .then(res => {
-                // если ответ ок переключаемся на Режим рецензирования
-                changeStateShare(res);
-                // Копируем урл в адресную строку на случай перезагрузки страницы
-                window.history.pushState("object or string", "Title",`${url.origin}?id=${res.id}`)
+            // если ответ ок переключаемся на Режим рецензирования
+            changeStateShare(res);
+            // Копируем урл в адресную строку на случай перезагрузки страницы
+            window.history.pushState("object or string", "Title",`${url.origin}?id=${res.id}`)
         })
         .catch(err => {
-                menu.style.display = 'none';
+            menu.style.display = 'none';
             imageLoader.style.display = 'none';
             console.log(err);
         });
