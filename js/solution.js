@@ -371,11 +371,11 @@ canvas.addEventListener("mousedown", (event) => {
     needsRepaint = true;
 });
 
-canvas.addEventListener("mouseup", () => {
+canvas.addEventListener("mouseup", (event) => {
     drawing = false;
 });
 
-canvas.addEventListener("mouseleave", () => {
+canvas.addEventListener("mouseleave", (event) => {
     drawing = false;
 });
 
@@ -383,7 +383,6 @@ canvas.addEventListener("mousemove", (event) => {
     if (drawing) {
         curves[curves.length - 1].push(makePoint(event.offsetX, event.offsetY));
         needsRepaint = true;
-        // debounceSendMask();
     }
 });
 
@@ -412,6 +411,7 @@ function smoothCurve(points) {
     for(let i = 1; i < points.length - 1; i++) {
         smoothCurveBetween(points[i], points[i + 1]);
     }
+
     ctx.stroke();
 }
 // координаты положения курсора
@@ -428,6 +428,7 @@ function repaint () {
         // задаем цвет
         ctx.strokeStyle = curve.color;
         ctx.fillStyle = curve.color;
+
         circle(curve[0]);
         smoothCurve(curve);
     });
@@ -441,8 +442,7 @@ function tick () {
         repaint();
         needsRepaint = false;
         // отправляем рисунки на сервер
-        // throttleSendMask();
-        debounceSendMask();
+        debounceSendMask()
     }
     window.requestAnimationFrame(tick);
 }
@@ -460,20 +460,20 @@ function throttle(callback, delay) {
             isWaiting = true;
             setTimeout(() => {
                 isWaiting = false;
-        }, delay);
+            }, delay);
         }
     };
 }
 
-// происходит позавершении текушего действия
+// происходи позавершении текушего действия
 function debounce(callback, delay) {
     let timeout;
     return () => {
         clearTimeout(timeout);
         timeout = setTimeout(() => {
             timeout = null;
-        callback();
-    }, delay);
+            callback();
+        }, delay);
     };
 }
 
@@ -499,4 +499,5 @@ tick(); // запуск анимации и обновления данных
 window.addEventListener('beforeunload', () => {
     connection.close(1000);
 });
+
 
