@@ -267,7 +267,7 @@ canvas.addEventListener('click', (event) => {
 
 // копирование ссылки в буфер обмена
 
-document.querySelector('.menu_copy').addEventListener('click', (event) => {
+document.querySelector('.menu_copy').addEventListener('click', () => {
     urlForShare.select();
     document.execCommand('copy');
 });
@@ -371,11 +371,11 @@ canvas.addEventListener("mousedown", (event) => {
     needsRepaint = true;
 });
 
-canvas.addEventListener("mouseup", (event) => {
+canvas.addEventListener("mouseup", () => {
     drawing = false;
 });
 
-canvas.addEventListener("mouseleave", (event) => {
+canvas.addEventListener("mouseleave", () => {
     drawing = false;
 });
 
