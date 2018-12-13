@@ -134,46 +134,46 @@ function sendImage(file) {
         credentials: 'same-origin',
         method: 'POST',
     })
-        .then( res => {
+    .then( res => {
         if (res.status >= 200 && res.status < 300) {
-        return res;
-    }
-    throw new Error (res.statusText);
-})
-.then(res => res.json())
-.then(res => {
+            return res;
+            }
+        throw new Error (res.statusText);
+    })
+    .then(res => res.json())
+    .then(res => {
         takeImageInfo(res.id);
         pictureID = res.id;
-})
-.catch(err => {
+    })
+    .catch(err => {
         console.log(err);
-    imageLoader.style.display = 'none';
-    errorNode.style.display = 'none';
-    errorMessage.textContent = err;
-});
+        imageLoader.style.display = 'none';
+        errorNode.style.display = 'none';
+        errorMessage.textContent = err;
+    });
 }
 
 // обрабатываем ответ сервера
 function takeImageInfo(id) {
     fetch(`https://neto-api.herokuapp.com/pic/${id}`)
-        .then( res => {
-            if (res.status >= 200 && res.status < 300) {
-            return res;
-            }
-            throw new Error (res.statusText);
-        })
-        .then(res => res.json())
-        .then(res => {
-            // если ответ ок переключаемся на Режим рецензирования
-            changeStateShare(res);
-            // Копируем урл в адресную строку на случай перезагрузки страницы
-            window.history.pushState("object or string", "Title",`${url.origin}?id=${res.id}`)
-        })
-        .catch(err => {
-            menu.style.display = 'none';
-            imageLoader.style.display = 'none';
-            console.log(err);
-        });
+    .then( res => {
+        if (res.status >= 200 && res.status < 300) {
+        return res;
+        }
+        throw new Error (res.statusText);
+    })
+    .then(res => res.json())
+    .then(res => {
+        // если ответ ок переключаемся на Режим рецензирования
+        changeStateShare(res);
+        // Копируем урл в адресную строку на случай перезагрузки страницы
+        window.history.pushState("object or string", "Title",`${url.origin}?id=${res.id}`)
+    })
+    .catch(err => {
+        menu.style.display = 'none';
+        imageLoader.style.display = 'none';
+        console.log(err);
+    });
 }
 
 //  *** Режим Рецензирования / Поделиться  ***
