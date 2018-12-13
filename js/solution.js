@@ -386,7 +386,6 @@ canvas.addEventListener("mousemove", (event) => {
         curves[curves.length - 1].push(makePoint(event.offsetX, event.offsetY));
         debounceSendMask();
         needsRepaint = true;
-        reloadePage()
     }
 });
 
@@ -442,6 +441,7 @@ function repaint () {
 function tick () {
     //  при каждой перерисовке следим за высотой menu
     checkMenuHeight();
+    reloadePage();
     if(needsRepaint) {
         repaint();
         needsRepaint = false;
@@ -508,11 +508,7 @@ window.addEventListener('beforeunload', () => {
 
 function reloadePage() {
     if (!localStorage.getItem('restart-ok')) {
-        localStorage.setItem('restart-ok', 'True')
-        console.log('Set')
-        // location.reload()
-
-    } else {
-        console.log('no-set')
-    }
+        localStorage.setItem('restart-ok', 'True');
+        console.log('Set');
+        location.reload();}
 }
