@@ -36,7 +36,7 @@ function moveMenu(event) {
 function moveEnd() {
     if (movedPiece) {
         movedPiece = null;
-    };
+    }
 }
 
 // оптимизируем отрисовку анимациии
@@ -57,7 +57,7 @@ function throttle(callback) {
 function checkMenuHeight() {
     if (menu.offsetHeight > 66) {
         // забавно если сразу не обнулить то меню медленно выплывает )))
-        menu.style.left = '0px'
+        menu.style.left = '0px';
         menu.style.left = `${wrap.offsetWidth - menu.offsetWidth - 1}px`
     }
 }
