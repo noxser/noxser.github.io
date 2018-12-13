@@ -159,28 +159,27 @@ function takeImageInfo(id) {
         .then( res => {
         if (res.status >= 200 && res.status < 300) {
         return res;
-    }
-    throw new Error (res.statusText);
-})
-.then(res => res.json())
-.then(res => {
-        // если ответ ок переключаемся на Режим рецензирования
-        changeStateShare(res);
-        // Копируем урл в адресную строку на случай перезагрузки страницы
-        window.history.pushState("object or string", "Title",`${url.origin}?id=${res.id}`)
-})
-.catch(err => {
-        menu.style.display = 'none';
-    imageLoader.style.display = 'none';
-    console.log(err);
-});
+        }
+        throw new Error (res.statusText);
+        })
+        .then(res => res.json())
+        .then(res => {
+                // если ответ ок переключаемся на Режим рецензирования
+                changeStateShare(res);
+                // Копируем урл в адресную строку на случай перезагрузки страницы
+                window.history.pushState("object or string", "Title",`${url.origin}?id=${res.id}`)
+        })
+        .catch(err => {
+                menu.style.display = 'none';
+            imageLoader.style.display = 'none';
+            console.log(err);
+        });
 }
 
 //  *** Режим Рецензирования / Поделиться  ***
 
 // получаем картинку и меняем состояние меню
 function changeStateShare(res) {
-
     // переключаем режим меню в зависимости от ситуации
     if (picId) {
         menu.dataset.state = 'selected';
@@ -195,15 +194,15 @@ function changeStateShare(res) {
     // после загрузки картинки основное дейтвие )))
     currentImage.addEventListener('load', () => {
         imageLoader.style.display = 'none';
-    menu.style.display = '';
-    createWrapCanvasComments();
-    createCanvas();
-    removeComents();
-    // отрисовываем полученные комментарии
-    updateComments(res.comments);
-    //подключаемся по вебсокет
-    wss();
-});
+        menu.style.display = '';
+        createWrapCanvasComments();
+        createCanvas();
+        removeComents();
+        // отрисовываем полученные комментарии
+        updateComments(res.comments);
+        //подключаемся по вебсокет
+        wss();
+    });
     currentImage.src = res.url;
     urlForShare.value = `${url}?id=${res.id}`
 }
@@ -217,11 +216,11 @@ function checkCommentsState() {
     if (commentsOnInput.checked) {
         document.querySelectorAll('.comments__form').forEach(form => {
             form.style.display = ''; // включаем коментарии
-    })
+        })
     } else {
         document.querySelectorAll('.comments__form').forEach(form => {
             form.style.display = 'none'; // выключаем коментарии
-    })
+        })
     }
 }
 
@@ -307,15 +306,15 @@ function createWrapCanvasComments() {
     // отображаем комментарий (по клику) поверх остальных
     wrapCanvasComments.addEventListener('click', event => {
         if (event.target.closest('.comments__form')) {
-        const currentForm = event.target.closest('.comments__form');
-        Array.from(wrapCanvasComments.querySelectorAll('.comments__form')).forEach(form => {
-            form.style.zIndex = 2;
-        });
-        currentForm.style.zIndex = 3;
-        // удаляем все пустые комментарии, помимо того, на который кликнули
-        deleteAllBlankCommentFormsExcept(currentForm);
-        // сворачиваем все комментарии кроме текущего
-        minimizeAllComment(currentForm);
+            const currentForm = event.target.closest('.comments__form');
+            Array.from(wrapCanvasComments.querySelectorAll('.comments__form')).forEach(form => {
+                form.style.zIndex = 2;
+            });
+            currentForm.style.zIndex = 3;
+            // удаляем все пустые комментарии, помимо того, на который кликнули
+            deleteAllBlankCommentFormsExcept(currentForm);
+            // сворачиваем все комментарии кроме текущего
+            minimizeAllComment(currentForm);
         }
     });
 }
@@ -441,8 +440,8 @@ function tick () {
         repaint();
         needsRepaint = false;
         // отправляем рисунки на сервер
-        throttleSendMask()
-        debounceSendMask()
+        throttleSendMask();
+        debounceSendMask();
     }
     window.requestAnimationFrame(tick);
 }
