@@ -383,7 +383,7 @@ canvas.addEventListener("mousemove", (event) => {
     if (drawing) {
         // curves[curves.length - 1].push(makePoint(event.offsetX, event.offsetY));
         needsRepaint = true;
-        debounceSendMask();
+        // debounceSendMask();
     }
 });
 
