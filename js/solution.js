@@ -512,5 +512,7 @@ function reloadePage() {
         console.log('Set')
         // location.reload()
 
+    } else {
+        console.log('no-set')
     }
 }
