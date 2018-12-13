@@ -122,13 +122,12 @@ function addComentToForm(newMsg, form) {
     let theNearestLowerDiv = form.querySelector('.loader').parentElement;
     form.querySelectorAll('.user__comment').forEach(msgDiv => {
         const currMsgTimestamp = +msgDiv.dataset.timestamp;
-
-    if (currMsgTimestamp < newMsg.timestamp) return;
-    if (currMsgTimestamp < timestamp) {
-        timestamp = currMsgTimestamp;
-        theNearestLowerDiv = msgDiv;
-    }
-});
+        if (currMsgTimestamp < newMsg.timestamp) return;
+        if (currMsgTimestamp < timestamp) {
+            timestamp = currMsgTimestamp;
+            theNearestLowerDiv = msgDiv;
+        }
+    });
     const newMsgDiv = document.createElement('div');
     newMsgDiv.classList.add('comment');
     newMsgDiv.classList.add('user__comment');
