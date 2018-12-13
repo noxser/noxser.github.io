@@ -65,7 +65,7 @@ function onFirstStart() {
     burger.style.display = 'none'; // убираем бургер
     document.querySelectorAll('.comments__form').forEach(form => {
         form.style.display = 'none'; // выключаем коментарии
-});
+    });
 
     //Навешиваем события для открытия изображения
     menu.querySelector('.new').addEventListener('click', uploadFileFromInput);
@@ -75,7 +75,7 @@ function onFirstStart() {
 }
 
 // Загрузка через кнопку загрузить новое
-function uploadFileFromInput(event) {
+function uploadFileFromInput() {
     //добавим форму для вызова окна "выбора файла"
     const fileInput = document.createElement('input');
     fileInput.setAttribute('id', 'fileInput');
@@ -85,8 +85,8 @@ function uploadFileFromInput(event) {
     menu.appendChild(fileInput);
     document.querySelector('#fileInput').addEventListener('change', event => {
         const files = event.currentTarget.files;
-    sendImage(files[0])
-});
+        sendImage(files[0])
+    });
     fileInput.click();
     menu.removeChild(fileInput);
 }
@@ -137,7 +137,7 @@ function sendImage(file) {
     .then( res => {
         if (res.status >= 200 && res.status < 300) {
             return res;
-            }
+        }
         throw new Error (res.statusText);
     })
     .then(res => res.json())
@@ -158,7 +158,7 @@ function takeImageInfo(id) {
     fetch(`https://neto-api.herokuapp.com/pic/${id}`)
     .then( res => {
         if (res.status >= 200 && res.status < 300) {
-        return res;
+            return res;
         }
         throw new Error (res.statusText);
     })
