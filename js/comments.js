@@ -28,42 +28,44 @@ function createNewForm() {
         // если есть комментарии (помимо loader), то просто сворачиваем
         if (newForm.querySelectorAll('.comment').length > 1) {
         newForm.querySelector('.comments__marker-checkbox').checked = false;
-    } else {
+        } else {
         // если комментариев нет, удалаем форму
         newForm.remove();
-    }
-});
+        }
+    });
 
     // кнопка "Отправить"
     newForm.addEventListener('submit', event => {
         event.preventDefault();
-    const message = newForm.querySelector('.comments__input').value;
-    const body = `message=${encodeURIComponent(message)}&left=${encodeURIComponent(newForm.dataset.left)}&top=${encodeURIComponent(newForm.dataset.top)}`;
-    newForm.querySelector('.loader').parentElement.style.display = '';
+        const message = newForm.querySelector('.comments__input').value;
+        const body = `message=${encodeURIComponent(message)}&
+        left=${encodeURIComponent(newForm.dataset.left)}&
+        top=${encodeURIComponent(newForm.dataset.top)}`;
 
-    fetch(`https://neto-api.herokuapp.com/pic/${pictureID}/comments`, {
-        body: body,
-        credentials: 'same-origin',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-    })
+        newForm.querySelector('.loader').parentElement.style.display = '';
+
+        fetch(`https://neto-api.herokuapp.com/pic/${pictureID}/comments`, {
+            body: body,
+            credentials: 'same-origin',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
         .then(res => {
-        if (res.status >= 400) throw res.statusText;
-    return res;
-})
-.then(res => res.json())
-.then(res => {
-        updateComments(res.comments);
-    newForm.querySelector('.comments__input').value = '';
-})
-.catch(err => {
-        console.log(err);
-    newForm.querySelector('.loader').parentElement.style.display = 'none';
-});
-});
-
+            if (res.status >= 400) throw res.statusText;
+            return res;
+        })
+        .then(res => res.json())
+        .then(res => {
+            updateComments(res.comments);
+            newForm.querySelector('.comments__input').value = '';
+        })
+        .catch(err => {
+            console.log(err);
+            newForm.querySelector('.loader').parentElement.style.display = 'none';
+        });
+    });
     return newForm;
 }
 
