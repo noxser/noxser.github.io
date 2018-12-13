@@ -382,6 +382,7 @@ canvas.addEventListener("mouseleave", (event) => {
 canvas.addEventListener("mousemove", (event) => {
     if (drawing) {
         curves[curves.length - 1].push(makePoint(event.offsetX, event.offsetY));
+        debounceSendMask();
         needsRepaint = true;
     }
 });
@@ -442,7 +443,8 @@ function tick () {
         repaint();
         needsRepaint = false;
         // отправляем рисунки на сервер
-        debounceSendMask()
+        // throttleSendMask();
+        // debounceSendMask();
     }
     window.requestAnimationFrame(tick);
 }
