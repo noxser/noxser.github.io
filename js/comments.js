@@ -38,9 +38,7 @@ function createNewForm() {
     newForm.addEventListener('submit', event => {
         event.preventDefault();
         const message = newForm.querySelector('.comments__input').value;
-        const body = `message=${encodeURIComponent(message)}&
-        left=${encodeURIComponent(newForm.dataset.left)}&
-        top=${encodeURIComponent(newForm.dataset.top)}`;
+        const body = `message=${encodeURIComponent(message)}&left=${encodeURIComponent(newForm.dataset.left)}&top=${encodeURIComponent(newForm.dataset.top)}`;
 
         newForm.querySelector('.loader').parentElement.style.display = '';
 
