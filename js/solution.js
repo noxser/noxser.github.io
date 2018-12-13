@@ -231,8 +231,8 @@ function  minimizeAllComment(currentForm = null) {
         if (form !== currentForm) {
         // если выбран не текущий комментарий, сворачиваем его
         form.querySelector('.comments__marker-checkbox').checked = false;
-    }
-});
+        }
+    });
 }
 
 // удаляем все пустые комментарии, кроме currentForm
@@ -241,27 +241,27 @@ function deleteAllBlankCommentFormsExcept(currentForm = null) {
         if (form.querySelectorAll('.comment').length < 2 && form !== currentForm) {
         // если комментариев нет, и выбран не текущий комментарий, удалаем форму
         form.remove();
-    }
-});
+        }
+    });
 }
 
 //при клике на хосле создаем новый комментарий
 canvas.addEventListener('click', (event) => {
     if (comments.dataset.state !== 'selected' || !commentsOnInput.checked) return;
-deleteAllBlankCommentFormsExcept();
-minimizeAllComment();
-const newComment = createNewForm();
-newComment.querySelector('.comments__marker-checkbox').checked = true;
-//смещение, чтобы маркер встал туда, куда кликнули
-const coordX = event.offsetX - 22;
-const coordY = event.offsetY - 14;
-newComment.style.left = coordX + 'px';
-newComment.style.top = coordY + 'px';
-// и в каждую форму добавляем атрибуты data-left и data-top
-// координаты левого верхнего угла формы относительно currentImage
-newComment.dataset.left = coordX;
-newComment.dataset.top = coordY;
-wrapCanvasComments.appendChild(newComment);
+    deleteAllBlankCommentFormsExcept();
+    minimizeAllComment();
+    const newComment = createNewForm();
+    newComment.querySelector('.comments__marker-checkbox').checked = true;
+    //смещение, чтобы маркер встал туда, куда кликнули
+    const coordX = event.offsetX - 22;
+    const coordY = event.offsetY - 14;
+    newComment.style.left = coordX + 'px';
+    newComment.style.top = coordY + 'px';
+    // и в каждую форму добавляем атрибуты data-left и data-top
+    // координаты левого верхнего угла формы относительно currentImage
+    newComment.dataset.left = coordX;
+    newComment.dataset.top = coordY;
+    wrapCanvasComments.appendChild(newComment);
 });
 
 
@@ -270,14 +270,14 @@ wrapCanvasComments.appendChild(newComment);
 
 document.querySelector('.menu_copy').addEventListener('click', (event) => {
     urlForShare.select();
-document.execCommand('copy');
+    document.execCommand('copy');
 });
 
 //  Переключение режимов меню
 
 burger.addEventListener('click', () => {
     menu.dataset.state = 'default';
-menuModeElements.forEach(elem => elem.dataset.state = '');
+    menuModeElements.forEach(elem => elem.dataset.state = '');
 });
 
 menuModeElements.forEach(elem => {
@@ -285,11 +285,11 @@ menuModeElements.forEach(elem => {
     // пропускаем пункт загрузить новое
     // так как нет изменения интерфейса открываеться окно загруки
     if (!elem.classList.contains('new')) {
-    elem.addEventListener('click', (event) => {
-        menu.dataset.state = 'selected';
-    event.currentTarget.dataset.state = 'selected'
-})
-}
+        elem.addEventListener('click', (event) => {
+            menu.dataset.state = 'selected';
+            event.currentTarget.dataset.state = 'selected'
+        })
+    }
 });
 
 // wrap для холста и коментариев
